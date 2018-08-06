@@ -1,1 +1,43 @@
-{{ tenPlanets }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    
+    <title>Planets</title>
+</head>
+<body>
+    <section class="planets">
+        <div class="container">
+            <header>
+                    <h1>Star Wars universe planets</h1>
+                    <p>
+                        <button>Previous</button></a>
+                        <button>Next</button></a>
+                    </p>
+            </header>    
+    
+            <table class="table table-bordered table-hover table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th id='name'>Name</th>
+                        <th id='diameter'>Diameter</th>
+                        <th id='climate'>Climate</th>
+                        <th id='terrain'>Terrain</th>
+                        <th id='surface-water-percentage'>Surface Water Percentage</th>
+                        <th id='population'>Population</th>
+                        <th id= 'residents'>Residents</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    
+                </tbody>
+                {{ tenPlanets }}
+                
+            </table>
+            
