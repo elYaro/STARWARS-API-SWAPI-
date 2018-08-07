@@ -12,9 +12,10 @@ def giveMeTenPlanets():
 # connect to SWAPI server and get 10 previous planets data
 # gives back dictionary
 def giveMeTenPreviousPlanets(urlTo10PreviousPlanets):
-    url = urlTo10PreviousPlanets
-    tenPreviousPlanets = requests.get(url).json()
-    return tenPreviousPlanets
+    if urlTo10PreviousPlanets != "None" and urlTo10PreviousPlanets != "":
+        url = urlTo10PreviousPlanets
+        tenPreviousPlanets = requests.get(url).json()
+        return tenPreviousPlanets
 
 
 # connect to SWAPI server and get 10 next planets data
