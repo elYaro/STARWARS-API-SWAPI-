@@ -19,10 +19,8 @@
                         <form action='/previous'>
                             <button type="submit" name = "previous" value="{{ tenPlanets.previous }}" class="btn">Previuos</button>
                         </form>
-                        <form action='/next'>
-                            <button type="submit"; name = 'next' value="{{ tenPlanets.next }}" class="btn">Next</button>
-                        </form>
-                    </span>       
+                        
+                    </span> 
             </header>    
             <table class="table table-bordered table-hover table-striped table-condensed">
                 <thead>
@@ -38,7 +36,7 @@
                     </tr>
                 </thead> 
                 <tbody>
-                    {% for planet in tenPlanets['results'] %}
+                    {% for planet in tenPlanets.results %}
                     <tr>
                         <td>{{ planet.name }}</td>
                         <td>{{ planet.diameter }} km</td>
@@ -56,8 +54,6 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-                {{tenPlanets}}
-              
                 
             </table>
             
