@@ -16,6 +16,7 @@ def giveMeTenPreviousPlanets(urlTo10PreviousPlanets):
     tenPreviousPlanets = requests.get(url).json()
     return tenPreviousPlanets
 
+
 # connect to SWAPI server and get 10 next planets data
 # gives back dictionary
 def giveMeTenNextPlanets(urlTo10NextPlanets):
