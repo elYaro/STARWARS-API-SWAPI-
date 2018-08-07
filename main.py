@@ -18,6 +18,14 @@ def previous():
     return render_template('planets.html', tenPlanets = tenPreviousPlanets)
 
 
+# route to 10 Next Planets (Page + 1 )
+@app.route('/next')
+def next():
+    urlTo10NextPlanets = request.args.get('next')
+    tenNextPlanets = logic.giveMeTenNextPlanets(urlTo10NextPlanets)
+    return render_template('planets.html', tenPlanets = tenNextPlanets)   
+
+
 
 if __name__ == '__main__':
   app.run(port=5000, debug=True)
