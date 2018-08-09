@@ -17,10 +17,10 @@
                     <h1>Star Wars universe planets</h1>
                     <span>
                         <form action='/previous'>
-                            <button type="submit" name = "previous" value="{{ tenPlanets.previous }}" class="btn">Previuos</button>
+                            <button type="submit" name = "previous" value="{{ tenPlanets.previous }}" class="btn" id="previus">Previuos</button>
                         </form>
                         <form action='/next'>
-                            <button type="submit"; name = 'next' value="{{ tenPlanets.next }}" class="btn">Next</button>
+                            <button type="submit"; name = 'next' value="{{ tenPlanets.next }}" class="btn" id="next">Next</button>
                         </form>
                     </span> 
             </header>    
@@ -47,7 +47,11 @@
                         <td>{{ planet.surface_water }}%</td>
                         <td>{{ planet.population }} people</td>
                         <td>{% if planet.residents|length > 0 %}
-                                <button>{{ planet.residents|length }} resident(s)</button>
+                           
+                            <form action='/residents'>
+                                <button type="submit" name = "residents" value="{{ planet.residents }}" class="btn residents">{{ planet.residents|length }} resident(s)</button>
+                            </form> 
+                            
                             {% else %}
                                 No known residents
                             {% endif %}
@@ -55,8 +59,11 @@
                         <td><button type="button" disabled >Vote</button></td>
                     </tr>
                     {% endfor %}
+                    
+                
                 </tbody>
-                {{ tenPlanets.previous }}
-                {{ tenPlanets.next }}
+                {{ tenPlanets.previous }} <br>
+                {{ tenPlanets.next }} <br>
+                {{ tenPlanets }}
             </table>
             
