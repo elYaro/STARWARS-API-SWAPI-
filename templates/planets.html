@@ -18,16 +18,14 @@
         <div class="container">
             <header>
                     <h1>Star Wars universe planets</h1>
-            
                         <form action='/previous'>
                             <button type="submit" name = "previous" value="{{ tenPlanets.previous }}" class="btn btn-primary" id="previus">Previous</button>
                         </form>
                         <form action='/next'>
                             <button type="submit"; name = 'next' value="{{ tenPlanets.next }}" class="btn btn-primary" id="next">Next</button>
                         </form>
-                    
-                    
             </header>    
+            
             <table class="table table-bordered table-hover table-striped table-condensed">
                 <thead>
                     <tr>
@@ -45,15 +43,20 @@
                     {% for planet in tenPlanets.results %}
                     <tr>
                         <td>{{ planet.name }}</td>
-                        <td>{{ planet.diameter }} km</td>
+                        <td> {{ "{:,}".format(planet.diameter|int) }} km</td>
                         <td>{{ planet.climate }}</td>
                         <td>{{ planet.terrain }}</td>
-                        <td>{{ planet.surface_water }}%</td>
-                        <td>{{ planet.population }} people</td>
+                        <td>{% if planet.surface_water != "unknown" %}
+                                {{ planet.surface_water}} %
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </td>
+                        <td>{{ "{:,}".format(planet.population|int) }} people</td>
                         <td>{% if planet.residents|length > 0 %}
-                           
                             <!-- Button trigger modal -->                             
-                            <button type="button" data-whatever = "{{ planet.name }}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">{{ planet.residents|length }} resident(s) </button><!-- END OF Button trigger modal -->
+                            <button type="button" data-planetname = "{{ planet.name }}" data-residents= "{{ tenPlanets.results[0].residents }}"  class="btn btn-primary" data-toggle="modal" data-target="#{{ planet.name }}">{{ planet.residents|length }} resident(s) </button><!-- END OF Button trigger modal -->
+                            
                             {% else %}
                                 No known residents
                             {% endif %}
@@ -62,23 +65,21 @@
                     </tr>
                  
                 </tbody>
-                <!--source data: 
-                {{ tenPlanets.previous }} <br>
-                {{ tenPlanets.next }} <br>
-                {{ tenPlanets }} -->
+           
+           
 
                 <!-- Modal Bootstrap window-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="{{ planet.name }}" tabindex="-1" role="dialog" aria-labelledby="{{ planet.name }}Label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Residents of</h5>
+                                <h5 class="modal-title" id="{{ planet.name}}Label">Residents of {{ planet.name }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                            
+                            {{ planet.residents }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>  
@@ -86,25 +87,28 @@
                         </div>
                     </div>
                 </div>
-                    {% endfor %}
-            
-                    <script>
-                            $('#exampleModal').on('show.bs.modal', function (event) {
+                    {% endfor %}            
+                    <script>//script from bootstrap documentation adapted for this app
+                            $('#planet.name').on('show.bs.modal', function (event) {
                             var button = $(event.relatedTarget) // Button that triggered the modal
-                            var recipient = button.data('whatever') // Extract info from data-* attributes
+                            var planetName = button.data('planetname')
+                            // var residentNames = button.data('residents')
+                            // Extract info from data-* attributes
                             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
                             var modal = $(this)
-                            modal.find('.modal-title').text('Residents on ' +  recipient )
-                            })
-                      
-                        </script>
+                            modal.find('.modal-title').text('Residents on ')
+                            // modal.find('.modal-title').text('Names of residents ' +  residentNames )
+                            })  
+                    </script>
             
             
             
             
             
                 </table>
+                <!-- {{ tenPlanets.results[2].residents }}  -->
+                <!-- {{ tenPlanets }}  -->
             
           
         
