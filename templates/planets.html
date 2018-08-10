@@ -55,7 +55,7 @@
                         <td>{{ "{:,}".format(planet.population|int) }} people</td>
                         <td>{% if planet.residents|length > 0 %}
                             <!-- Button trigger modal -->                             
-                            <button type="button" data-planetname = "{{ planet.name }}" data-residents= "{{ tenPlanets.results[0].residents }}"  class="btn btn-primary" data-toggle="modal" data-target="#{{ planet.name }}">{{ planet.residents|length }} resident(s) </button><!-- END OF Button trigger modal -->
+                            <button type="button" data-planetname = "{{ planet.name }}" data-residents= "{{ tenPlanets.results[0].residents }}"  class="btn btn-primary" data-toggle="modal" data-target="#{{ planet.name|replace(" ","") }}">{{ planet.residents|length }} resident(s) </button><!-- END OF Button trigger modal -->
                             
                             {% else %}
                                 No known residents
@@ -66,10 +66,11 @@
                  
                 </tbody>
            
-           
+                <!-- {{ "Hello World"|replace("Hello", "Goodbye") }}
+    -> Goodbye World -->
 
                 <!-- Modal Bootstrap window-->
-                <div class="modal fade" id="{{ planet.name }}" tabindex="-1" role="dialog" aria-labelledby="{{ planet.name }}Label" aria-hidden="true">
+                <div class="modal fade" id="{{ planet.name|replace(" ", "") }}" tabindex="-1" role="dialog" aria-labelledby="{{ planet.name }}Label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
